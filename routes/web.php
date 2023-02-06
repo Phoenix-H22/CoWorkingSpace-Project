@@ -1,7 +1,9 @@
 <?php
 
+use App\Http\Controllers\AdminController;
 use App\Http\Controllers\FilePathController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\HomeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,12 +16,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('dashboard.admin.sessions.index');
-});
 
+Auth::routes();
 Route::get('/upload-file', [FilePathController::class, 'createForm']);
 Route::post('/upload-file', [FilePathController::class, 'fileUpload'])->name('fileUpload');
-Auth::routes();
+Route::get('/admin',[AdminController::class, 'index'])->name('admin.index')->middleware('auth');
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/home', [HomeController::class, 'index'])->name('home')->middleware('auth');
