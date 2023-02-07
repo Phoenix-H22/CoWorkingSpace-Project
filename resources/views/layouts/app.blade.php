@@ -14,9 +14,22 @@
     <link href="https://fonts.bunny.net/css?family=Nunito" rel="stylesheet">
 
     <!-- Scripts -->
-    @vite(['resources/sass/app.scss', 'resources/js/app.js'])
+    @include('dashboard\admin\layout\header')
+    <!-- JavaScript Libraries -->
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+<script src="{{asset("dashboard/assets/lib/chart/chart.min.js")}}"></script>
+<script src="{{asset("dashboard/assets/lib/easing/easing.min.js")}}"></script>
+<script src="{{asset("dashboard/assets/lib/waypoints/waypoints.min.js")}}"></script>
+<script src="{{asset("dashboard/assets/lib/owlcarousel/owl.carousel.min.js")}}"></script>
+<script src="{{asset("dashboard/assets/lib/tempusdominus/js/moment.min.js")}}"></script>
+<script src="{{asset("dashboard/assets/lib/tempusdominus/js/moment-timezone.min.js")}}"></script>
+<script src="{{asset("dashboard/assets/lib/tempusdominus/js/tempusdominus-bootstrap-4.min.js")}}"></script>
+
+<!-- Template Javascript -->
+<script src="{{asset("dashboard/assets/js/main.js")}}"></script>
 </head>
-<body>
+<body class="bg-white">
     <div id="app">
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
             <div class="container">
@@ -55,13 +68,13 @@
                                 </a>
 
                                 <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="{{ route('logout') }}"
+                                    <a class="dropdown-item" href="{{ url('logout') }}"
                                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
                                         {{ __('Logout') }}
                                     </a>
 
-                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                    <form id="logout-form" action="{{ url('logout') }}" method="GET" class="d-none">
                                         @csrf
                                     </form>
                                 </div>

@@ -27,18 +27,19 @@
                 <div class="row">
                     <div class="col-12">
                         <div class="bg-secondary rounded h-100 p-4">
-                            <h6 class="mb-4">Creating New User</h6>
-                            <form action="{{url("admin/user/store")}}" method="post">
+                            <h6 class="mb-4">Update User</h6>
+                            <form action="{{url("admin/user/update/".$user->id)}}" method="post">
                                 <div class="form-floating mb-3">
                                     @csrf
-                                    <input type="text" class="form-control" id="floatingInput" name="name" placeholder="Ahmed">
+                                    <input type="hidden" name="id" value="{{$user->id}}">
+                                    <input type="text" class="form-control" id="floatingInput" name="name" placeholder="Ahmed" value="{{$user->name}}">
                                     @error('name')
                                     <div class="alert alert-danger">{{ $message }}</div>
                                     @enderror
                                     <label for="floatingInput">Name</label>
                                 </div>
                                 <div class="form-floating mb-3">
-                                    <input type="email" class="form-control" id="floatingInput" name="email" placeholder="name@example.com">
+                                    <input type="email" class="form-control" id="floatingInput" name="email" placeholder="name@example.com" value="{{$user->email}}">
                                     @error('email')
                                     <div class="alert alert-danger">{{ $message }}</div>
                                     @enderror
@@ -52,7 +53,7 @@
                                     <label for="floatingPassword">Password</label>
                                 </div>
                                 <div class="form-floating mb-3">
-                                    <input type="number" class="form-control" id="floatingInput" name="phone" placeholder="01069683986">
+                                    <input type="number" class="form-control" id="floatingInput" name="phone" placeholder="01069683986" value="{{$user->phone}}">
                                     @error('phone')
                                     <div class="alert alert-danger">{{ $message }}</div>
                                     @enderror
@@ -61,9 +62,15 @@
                                 
                                 <div class="form-floating mb-3">
                                     <select class="form-select" id="floatingSelect" aria-label="Role" name="role">
-                                        
-                                        <option value="admin">Admin</option>
+                                        @if ($user->role == 'admin')
+                                        <option value="admin" selected>Admin</option>
                                         <option value="user">User</option>
+
+                                        @else
+                                        <option value="user" selected>User</option>
+                                        <option value="admin">Admin</option>
+
+                                        @endif
                                     </select>
                                     @error('role')
                                     <div class="alert alert-danger">{{ $message }}</div>

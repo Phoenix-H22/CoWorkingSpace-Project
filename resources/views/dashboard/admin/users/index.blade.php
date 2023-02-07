@@ -39,10 +39,10 @@
                         <div class="bg-secondary rounded h-100 p-4">
                             <div class="row mb-2">
                                <div class="col-6">
-                                <h6 class="ms-auto d-inline">sessions Table</h6>
+                                <h6 class="ms-auto d-inline">Users Table</h6>
                                </div>
                             <div class="col-6 position-relative mb-2">
-                                <a href="{{route('admin.sessions.create')}}" class="btn btn-primary" style="position: absolute;right: 0;">Add sessions</a>
+                                <a href="{{route('admin.user.create')}}" class="btn btn-primary" style="position: absolute;right: 0;">Add User</a>
                                 <br>
                             </div>
                             
@@ -53,25 +53,27 @@
                                     <thead>
                                         <tr>
                                             <th scope="col">#</th>
-                                            <th scope="col">ID</th>
-                                            <th scope="col">Created At</th>
-                                            <th scope="col">End Time</th>
-                                            <th scope="col">Total Price</th>
+                                            <th scope="col">Name</th>
+                                            <th scope="col">Email</th>
+                                            <th scope="col">Phone Number</th>
+                                            <th scope="col">Role</th>
+                                            <th scope="col">action</th>
                                         
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @foreach ($sessions as $session)
-                                            <tr>
-                                                <th scope="row">{{ $loop->iteration }}</th>
-                                                <td>{{ $session->card_id }}</td>
-                                                <td>{{ $session->created_at }}</td>
-                                                <td>{{ $session->end_time }}</td>
-                                                <td>{{ $session->total_price }}</td>
-                                                <td>
-                                                    <a href="{{ route('admin.sessions.scan',$session->id) }}" class="btn btn-primary">Scan</a>
-                                                </td>
-                                            </tr>
+                                       @foreach ($users as $user)
+                                        <tr>
+                                            <th scope="row">{{$user->id}}</th>
+                                            <td>{{$user->name}}</td>
+                                            <td>{{$user->email}}</td>
+                                            <td>{{$user->phone}}</td>
+                                            <td>{{$user->role}}</td>
+                                            <td>
+                                                <a href="{{route('admin.user.edit',$user->id)}}" class="btn btn-primary">Edit</a>
+                                                <a href="{{route('admin.user.delete',$user->id)}}" class="btn btn-danger">Delete</a>
+                                            </td>
+                                        </tr>
                                         @endforeach
                                      
                                     </tbody>
