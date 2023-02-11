@@ -25,7 +25,7 @@ class SessionsController extends Controller
             'password' => 'required|min:6',
             'role' => 'required',
         ]);
-        $user = new User();
+        $user = new sessions();
         $user->name = $request->name;
         $user->email = $request->email;
         $user->password = bcrypt($request->password);
@@ -45,5 +45,5 @@ class SessionsController extends Controller
     {
         return view('dashboard.admin.sessions.scan');
     }
-   
+
 }
