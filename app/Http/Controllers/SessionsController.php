@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use App\Models\sessions;
 
@@ -39,7 +40,24 @@ class SessionsController extends Controller
             return redirect()->route('admin.user.create')->with('error', 'User already exists');
         }
     }
-
+    // calculate total money for one day
+    public static function totalMoney()
+    {
+        $total = sessions::whereDate('created_at', Carbon::today())->sum('total_price');
+        return $total;
+    }
+    // calculate total money for one month
+    public static function totalMoneyMonth()
+    {
+        $total = sessions::whereMonth('created_at', Carbon::now()->month)->sum('total_price');
+        return $total;
+    }
+    // calculate total money for all time
+    public static function totalMoneyAll()
+    {
+        $total = sessions::sum('total_price');
+        return $total;
+    }
     // scan qr code
     public function scan()
     {

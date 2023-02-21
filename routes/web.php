@@ -1,13 +1,14 @@
 <?php
 
-use App\Http\Controllers\AdminController;
-use App\Http\Controllers\Auth\LogoutController;
-use App\Http\Controllers\FilePathController;
-use App\Http\Controllers\UsersController;
 use Illuminate\Routing\RouteGroup;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\AdminController;
+use App\Http\Controllers\UsersController;
+use App\Http\Controllers\FilePathController;
 use App\Http\Controllers\SessionsController;
+use App\Http\Controllers\GeneratedController;
+use App\Http\Controllers\Auth\LogoutController;
 
 
 /*
@@ -23,12 +24,12 @@ use App\Http\Controllers\SessionsController;
 
 
 Auth::routes();
-Route::get('/', [HomeController::class, 'index'])->name('home')->middleware('auth');
 
 Route::get('/upload-file', [FilePathController::class, 'createForm']);
 Route::post('/upload-file', [FilePathController::class, 'fileUpload'])->name('fileUpload');
 Route::get('/admin',[AdminController::class, 'index'])->name('admin.index')->middleware('auth');
 Route::get('/logout', [LogoutController::class, 'perform'])->name('logout');
+Route::get('/qr', [GeneratedController::class, 'qr'])->name('logout');
 
 Route::get('/home', [HomeController::class, 'index'])->name('home')->middleware('auth');
 

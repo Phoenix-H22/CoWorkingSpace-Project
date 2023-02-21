@@ -24,13 +24,30 @@ class UsersController extends Controller
         return request()->json(200, $user);
     }
     public function store(Request $request){
+        $request->validate([
+            'name' => 'required',
+            'email' => 'required|email',
+            'phone' => 'required',
+            'password' => 'required|min:6',
+        ]);
         users::create($request->all());
         return request()->json(200, ['data'=>"User Stored Seucceffuly"]);
     }
     public function login(Request $request){
+    $request->password = bcrypt($request->password);
+      $request->validate([
+            'email' => 'required|email|exists:users',
+            'password' => 'required|exists:users,password',
+      ],
+        [
+            'email.exists' => 'Email does not exist',
+            'password.exists' => 'Wrong password'
+        ]
+    );
+
         $user = users::where('email', $request->email)->first();
         $email = users::where('email',$request->email)->get("email");
-        $password = users::where('password', bcrypt($request->password))->get("password");
+        $password = users::where('password', $request->password)->get("password");
         // return request()->json(200,["data"=>$email]);
         if ($email){
             if($password){
@@ -38,6 +55,12 @@ class UsersController extends Controller
 
                 return request()->json(200,['token' => $token]);
             }
+            else{
+                return request()->json(200,["data"=>"Wrong Password"]);
+            }
+        }
+        else{
+            return request()->json(200,["data"=>"Email does not exist"]);
         }
     }
     public function getDifference(Request $request) {

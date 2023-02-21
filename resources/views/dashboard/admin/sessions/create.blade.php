@@ -19,15 +19,15 @@
         <!-- Content Start -->
         <div class="content">
     @include('dashboard\admin\layout\navbar')
-         
+
     <br>            <br>
 
-        
+
             <div class="container">
                 <div class="row">
                     <div class="col-12">
                         <div class="bg-secondary rounded h-100 p-4">
-                            <h6 class="mb-4">Creating New User</h6>
+                            <h6 class="mb-4">Creating New Session</h6>
                             <form action="{{url("admin/user/store")}}" method="post">
                                 <div class="form-floating mb-3">
                                     @csrf
@@ -58,10 +58,10 @@
                                     @enderror
                                     <label for="floatingInput">Phone Number</label>
                                 </div>
-                                
+
                                 <div class="form-floating mb-3">
                                     <select class="form-select" id="floatingSelect" aria-label="Role" name="role">
-                                        
+
                                         <option value="admin">Admin</option>
                                         <option value="user">User</option>
                                     </select>
@@ -83,12 +83,12 @@
 
                                 <button class="btn btn-primary" type="submit">Create</button>
                             </form>
-                            
+
                         </div>
                     </div>
                 </div>
             </div>
-        
+
 
 
         @include('dashboard\admin\layout\footer')

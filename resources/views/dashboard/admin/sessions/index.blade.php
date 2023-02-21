@@ -19,10 +19,10 @@
         <!-- Content Start -->
         <div class="content">
     @include('dashboard\admin\layout\navbar')
-         
+
     <br>            <br>
 
-        
+
             <div class="container">
                 <div class="row">
                     <div class="col-12">
@@ -42,10 +42,10 @@
                                 <h6 class="ms-auto d-inline">sessions Table</h6>
                                </div>
                             <div class="col-6 position-relative mb-2">
-                                <a href="{{route('admin.sessions.create')}}" class="btn btn-primary" style="position: absolute;right: 0;">Add sessions</a>
+                                <a href="{{route('admin.sessions.create')}}" class="btn btn-primary" style="position: absolute;right: 0;">Add session</a>
                                 <br>
                             </div>
-                            
+
                             </div>
                             <br>
                             <div class="table-responsive"  style="height: 50vh;overflow: scroll;">
@@ -57,7 +57,7 @@
                                             <th scope="col">Created At</th>
                                             <th scope="col">End Time</th>
                                             <th scope="col">Total Price</th>
-                                        
+
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -73,7 +73,7 @@
                                                 </td>
                                             </tr>
                                         @endforeach
-                                     
+
                                     </tbody>
                                 </table>
                             </div>
@@ -81,7 +81,7 @@
                     </div>
                 </div>
             </div>
-        
+
 
 
         @include('dashboard\admin\layout\footer')

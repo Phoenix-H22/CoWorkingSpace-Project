@@ -41,4 +41,9 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+    // relation with generated_ids
+    public function generated_ids()
+    {
+        return $this->hasMany('App\Models\generated_ids');
+    }
 }
