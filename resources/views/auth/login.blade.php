@@ -69,7 +69,7 @@
         <!-- Sign In End -->
     </div>
 
-   @include('dashboard\admin\layout\footer')
+   @include('dashboard.admin.layout.footer')
 </body>
 
 </html>
