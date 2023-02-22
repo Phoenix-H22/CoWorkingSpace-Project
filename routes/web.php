@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\UsersController;
+use App\Http\Controllers\QrCodeController;
 use App\Http\Controllers\FilePathController;
 use App\Http\Controllers\SessionsController;
 use App\Http\Controllers\GeneratedController;
@@ -50,3 +51,9 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/admin/sessions/store', [SessionsController::class, 'store'])->name('admin.sessions.store');
 
 })->name('admin.sessions');
+// Route::get('/scan', [SessionsController::class, 'scan'])->name('admin.sessions.scan');
+
+Route::get('qr', [QrCodeController::class, 'index']);
+Route::get('cam', [QrCodeController::class, 'cam']);
+
+

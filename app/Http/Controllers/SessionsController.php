@@ -35,9 +35,9 @@ class SessionsController extends Controller
         $user->save();
         // if email is already taken then redirect to create page with error message
         if ($user->save()) {
-            return redirect()->route('admin.user.index')->with('success', 'User created successfully');
+            return redirect()->route('admin.user.index')->with('success', 'Session created successfully');
         } else {
-            return redirect()->route('admin.user.create')->with('error', 'User already exists');
+            return redirect()->route('admin.user.create')->with('error', 'Session already exists');
         }
     }
     // calculate total money for one day
@@ -59,9 +59,7 @@ class SessionsController extends Controller
         return $total;
     }
     // scan qr code
-    public function scan()
-    {
-        return view('dashboard.admin.sessions.scan');
-    }
+
+
 
 }

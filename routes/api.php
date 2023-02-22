@@ -23,14 +23,14 @@ Route::post('/time', [UsersController::class, 'getDifference']);
 Route::post('/register', [UsersController::class, 'store']);
 Route::post('/login', [UsersController::class, 'login']);
 
+Route::post('/scan', [apiSessionsController::class, 'scan']);
 // route group for authenticated users
 Route::middleware('auth:sanctum')->group(function () {
-    Route::post('/scan', [apiSessionsController::class, 'scan']);
     Route::post('/reset', [UsersController::class, 'reset']);
-    // Route::get('/totalmoney', [SessionsController::class, 'totalMoney']);
     // Route::get('/totalmoneym', [SessionsController::class, 'totalMoneyAll']);
     // Route::get('/totalmoneya', [SessionsController::class, 'totalMoneyMonth']);
 
 
 });
 
+Route::get('/totalmoney', [SessionsController::class, 'totalMoney']);

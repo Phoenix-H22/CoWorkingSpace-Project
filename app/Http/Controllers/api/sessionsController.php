@@ -33,8 +33,12 @@ class sessionsController extends Controller
         ];
     }
     public function scan(Request $request){
+        // validate the request
+        $request->validate([
+            'card_id' => 'required|numeric',
+        ]);
         date_default_timezone_set('Africa/Cairo');
-    $card_id    = $request->card_id;
+        $card_id    = $request->card_id;
         // i want to get the current time in Cairo
 
         $now = Carbon::now('Africa/Cairo')->toDateTimeString();
@@ -62,7 +66,7 @@ class sessionsController extends Controller
                 'Start Time' => $session->start_time,
                 'End Time' => $now,
             ]
-        ]);
+        ],200);
     }
     elseif ($session && $session->end_time != null){
         return response()->json([
@@ -74,7 +78,7 @@ class sessionsController extends Controller
                 'Start Time' => $session->start_time,
                 'End Time' => $session->end_time,
             ]
-        ]);
+        ],200);
     }
     else{
        sessions::create([
@@ -88,7 +92,7 @@ class sessionsController extends Controller
               'data' => [
                 'Start Time' => now()->format('H:i A'),
               ]
-         ]);
+         ],200);
 
     }
 }
@@ -120,4 +124,5 @@ public function reset(Request $request){
             ]
         ]);
     }
+}
 }
