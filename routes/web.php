@@ -90,7 +90,7 @@ Route::middleware(['auth'])->group(function () {
 });
 // Route::get('/scan', [SessionsController::class, 'scan'])->name('admin.sessions.scan');
 
-Route::post('qr', [QrCodeController::class, 'index']);
+
 Route::get('cam', [QrCodeController::class, 'cam']);
 
 

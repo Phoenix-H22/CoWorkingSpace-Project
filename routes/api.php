@@ -2,8 +2,9 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\SessionsController as SessionsController;
+use App\Http\Controllers\QrCodeController;
 use App\Http\Controllers\api\UsersController;
+use App\Http\Controllers\SessionsController as SessionsController;
 use App\Http\Controllers\api\sessionsController as apiSessionsController;
 
 /*
@@ -32,5 +33,5 @@ Route::middleware('auth:sanctum')->group(function () {
 
 
 });
-
+Route::post('qr', [QrCodeController::class, 'index']);
 Route::get('/totalmoney', [SessionsController::class, 'totalMoney']);
