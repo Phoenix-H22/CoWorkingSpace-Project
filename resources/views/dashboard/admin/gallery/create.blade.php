@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-@include('dashboard\admin\layout\header')
+@include('dashboard.admin.layout.header')
 
 <body>
     <div class="container-fluid position-relative d-flex p-0">
@@ -13,12 +13,12 @@
         <!-- Spinner End -->
 
 
-        @include('dashboard\admin\layout\sidebar')
+        @include('dashboard.admin.layout.sidebar')
 
 
         <!-- Content Start -->
         <div class="content">
-    @include('dashboard\admin\layout\navbar')
+    @include('dashboard.admin.layout.navbar')
 
     <br>            <br>
 
@@ -109,7 +109,7 @@
 
 
 
-        @include('dashboard\admin\layout\footer')
+        @include('dashboard.admin.layout.footer')
 </body>
 
 </html>

@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-@include('dashboard\admin\layout\header')
+@include('dashboard.admin.layout.header')
 
 <body>
     <div class="container-fluid position-relative d-flex p-0">
@@ -13,16 +13,16 @@
         <!-- Spinner End -->
 
 
-        @include('dashboard\admin\layout\sidebar')
+        @include('dashboard.admin.layout.sidebar')
 
 
         <!-- Content Start -->
         <div class="content">
-    @include('dashboard\admin\layout\navbar')
-         
+    @include('dashboard.admin.layout.navbar')
+
     <br>            <br>
 
-        
+
             <div class="container">
                 <div class="row">
                     <div class="col-12">
@@ -58,10 +58,10 @@
                                     @enderror
                                     <label for="floatingInput">Phone Number</label>
                                 </div>
-                                
+
                                 <div class="form-floating mb-3">
                                     <select class="form-select" id="floatingSelect" aria-label="Role" name="role">
-                                        
+
                                         <option value="admin">Admin</option>
                                         <option value="user">User</option>
                                     </select>
@@ -83,15 +83,15 @@
 
                                 <button class="btn btn-primary" type="submit">Create</button>
                             </form>
-                            
+
                         </div>
                     </div>
                 </div>
             </div>
-        
 
 
-        @include('dashboard\admin\layout\footer')
+
+        @include('dashboard.admin.layout.footer')
 </body>
 
 </html>
