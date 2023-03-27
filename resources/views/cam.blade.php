@@ -40,7 +40,7 @@
         function onScanSuccess(decodedText, decodedResult) {
         //    on successfull scan
            $.ajax({
-                url: 'https://192.168.1.101/CoWorkingSpace-Project/public/qr',
+                url: 'https://pixelsspace.com/qr',
                 method: 'POST',
                 headers: {
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content'),
