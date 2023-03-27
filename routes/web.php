@@ -30,7 +30,7 @@ use App\Http\Controllers\Auth\LogoutController;
 
 Auth::routes();
 Route::get('/logout', [LogoutController::class, 'perform'])->name('logout');
-Route::group(['middleware' => 'can:admin'],function(){
+Route::group([],function(){
 
 Route::get('/upload-file', [FilePathController::class, 'createForm']);
 Route::post('/upload-file', [FilePathController::class, 'fileUpload'])->name('fileUpload');
