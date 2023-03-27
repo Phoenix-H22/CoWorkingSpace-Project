@@ -1,7 +1,7 @@
   <!-- Navbar Start -->
   <nav class="navbar navbar-expand bg-secondary navbar-dark sticky-top px-4 py-0">
     <a href="index.html" class="navbar-brand d-flex d-lg-none me-4">
-        <h2 class="text-primary mb-0"><img src="{{asset('assets/images/logo.png')}}" alt=""></h2>
+        <h2 class="text-primary mb-0"><img width="50" src="{{asset('assets/images/logo.png')}}" alt=""></h2>
     </a>
     <a href="#" class="sidebar-toggler flex-shrink-0">
         <i class="fa fa-bars"></i>
@@ -17,6 +17,7 @@
                 <a href="#" class="dropdown-item">My Profile</a>
                 <a href="#" class="dropdown-item">Settings</a>
                 <form action="{{url("logout")}}" method="post">
+                    @csrf
                 <button type="submit" class="dropdown-item">Logout</button>
                 </form>
             </div>

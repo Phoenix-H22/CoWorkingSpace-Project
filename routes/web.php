@@ -29,11 +29,12 @@ use App\Http\Controllers\Auth\LogoutController;
 
 
 Auth::routes();
+Route::get('/logout', [LogoutController::class, 'perform'])->name('logout');
+Route::group(['middleware' => 'can:admin'],function(){
 
 Route::get('/upload-file', [FilePathController::class, 'createForm']);
 Route::post('/upload-file', [FilePathController::class, 'fileUpload'])->name('fileUpload');
 Route::get('/admin/dashboard',[AdminController::class, 'index'])->name('admin.index')->middleware('auth');
-Route::get('/logout', [LogoutController::class, 'perform'])->name('logout');
 Route::get('/qr', [GeneratedController::class, 'qr'])->name('logout');
 
 Route::get('/', [HomeController::class, 'index'])->name('home')->middleware('auth');
@@ -86,6 +87,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/admin/settings', [SettingsController::class, 'index'])->name('admin.settings.index');
     Route::post('/admin/settings/store', [SettingsController::class, 'store'])->name('admin.settings.store');
 })->name('admin.settings');
+});
 // Route::get('/scan', [SessionsController::class, 'scan'])->name('admin.sessions.scan');
 
 Route::post('qr', [QrCodeController::class, 'index']);
