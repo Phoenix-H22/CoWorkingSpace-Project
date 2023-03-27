@@ -10,7 +10,7 @@ use Carbon\Carbon;
 use Carbon\CarbonInterval;
 class sessionsController extends Controller
 {
-    public function getDifference($created_at, $now) {
+    public static function getDifference($created_at, $now) {
 
         $to = Carbon::createFromFormat('Y-m-d H:i:s', $created_at, 'Africa/Cairo');
         $from = Carbon::createFromFormat('Y-m-d H:i:s', $now , 'Africa/Cairo');
@@ -32,7 +32,7 @@ class sessionsController extends Controller
             'diff_minutes' => $diff_in_minutes,
         ];
     }
-    public function scan(Request $request){
+    public static function scan(Request $request){
         // validate the request
         $request->validate([
             'card_id' => 'required|numeric',
@@ -46,7 +46,7 @@ class sessionsController extends Controller
     $session = sessions::where('card_id', $card_id)->first();
 
     if ($session && $session->end_time == null){
-        $total_time = $this->getDifference($session->created_at, $now);
+        $total_time = sessionsController::getDifference($session->created_at, $now);
         $price_per_hour = settings::select('price_per_hour')->first();
         $price_per_hour = $price_per_hour->price_per_hour;
         $total_time_in_hours = $total_time['diff_hours'] + ($total_time['diff_minutes'] / 60);
