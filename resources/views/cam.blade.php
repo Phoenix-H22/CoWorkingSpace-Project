@@ -51,7 +51,7 @@
                 success: function (data) {
                     // alert response code that returned from server
                     // alert(data);
-                    $("#qr-reader-results").append("Success");
+                    $("#qr-reader-results").append(decodedText);
                 },
                 error: function (data) {
                     // alert response code that returned from server
