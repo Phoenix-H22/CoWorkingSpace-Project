@@ -1,5 +1,9 @@
 <?php
 
+use App\Http\Controllers\GalleryController;
+use App\Http\Controllers\KitchenController;
+use App\Http\Controllers\SettingsController;
+use App\Http\Controllers\StationaryController;
 use Illuminate\Routing\RouteGroup;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
@@ -28,11 +32,11 @@ Auth::routes();
 
 Route::get('/upload-file', [FilePathController::class, 'createForm']);
 Route::post('/upload-file', [FilePathController::class, 'fileUpload'])->name('fileUpload');
-Route::get('/admin',[AdminController::class, 'index'])->name('admin.index')->middleware('auth');
+Route::get('/admin/dashboard',[AdminController::class, 'index'])->name('admin.index')->middleware('auth');
 Route::get('/logout', [LogoutController::class, 'perform'])->name('logout');
 Route::get('/qr', [GeneratedController::class, 'qr'])->name('logout');
 
-Route::get('/home', [HomeController::class, 'index'])->name('home')->middleware('auth');
+Route::get('/', [HomeController::class, 'index'])->name('home')->middleware('auth');
 
 Route::middleware(['auth'])->group(function () {
     Route::get('/admin/user', [UsersController::class, 'index'])->name('admin.user.index');
@@ -51,9 +55,40 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/admin/sessions/store', [SessionsController::class, 'store'])->name('admin.sessions.store');
 
 })->name('admin.sessions');
+Route::middleware(['auth'])->group(function () {
+    Route::get('/admin/kitchen', [KitchenController::class, 'index'])->name('admin.kitchen.index');
+    Route::get('/admin/kitchen/create', [KitchenController::class, 'create'])->name('admin.kitchen.create');
+    Route::post('/admin/kitchen/update/{id}', [KitchenController::class, 'update'])->name('admin.kitchen.update');
+    Route::post('/admin/kitchen/store', [KitchenController::class, 'store'])->name('admin.kitchen.store');
+    Route::get('/admin/kitchen/delete/{id}', [KitchenController::class, 'delete'])->name('admin.kitchen.delete');
+    Route::get('/admin/kitchen/edit/{id}', [KitchenController::class, 'edit'])->name('admin.kitchen.edit');
+
+})->name('admin.kitchen');
+Route::middleware(['auth'])->group(function () {
+    Route::get('/admin/gallery', [GalleryController::class, 'index'])->name('admin.gallery.index');
+    Route::get('/admin/gallery/create', [GalleryController::class, 'create'])->name('admin.gallery.create');
+    Route::post('/admin/gallery/update/{id}', [GalleryController::class, 'update'])->name('admin.gallery.update');
+    Route::post('/admin/gallery/store', [GalleryController::class, 'store'])->name('admin.gallery.store');
+    Route::get('/admin/gallery/delete/{id}', [GalleryController::class, 'delete'])->name('admin.gallery.delete');
+    Route::get('/admin/gallery/edit/{id}', [GalleryController::class, 'edit'])->name('admin.gallery.edit');
+
+})->name('admin.gallery');
+Route::middleware(['auth'])->group(function () {
+    Route::get('/admin/stationary', [StationaryController::class, 'index'])->name('admin.stationary.index');
+    Route::get('/admin/stationary/create', [StationaryController::class, 'create'])->name('admin.stationary.create');
+    Route::post('/admin/stationary/update/{id}', [StationaryController::class, 'update'])->name('admin.stationary.update');
+    Route::post('/admin/stationary/store', [StationaryController::class, 'store'])->name('admin.stationary.store');
+    Route::get('/admin/stationary/delete/{id}', [StationaryController::class, 'delete'])->name('admin.stationary.delete');
+    Route::get('/admin/stationary/edit/{id}', [StationaryController::class, 'edit'])->name('admin.stationary.edit');
+
+})->name('admin.stationary');
+Route::middleware(['auth'])->group(function () {
+    Route::get('/admin/settings', [SettingsController::class, 'index'])->name('admin.settings.index');
+    Route::post('/admin/settings/store', [SettingsController::class, 'store'])->name('admin.settings.store');
+})->name('admin.settings');
 // Route::get('/scan', [SessionsController::class, 'scan'])->name('admin.sessions.scan');
 
-Route::get('qr', [QrCodeController::class, 'index']);
+Route::post('qr', [QrCodeController::class, 'index']);
 Route::get('cam', [QrCodeController::class, 'cam']);
 
 

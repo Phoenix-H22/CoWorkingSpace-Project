@@ -26,56 +26,67 @@
             <div class="container">
                 <div class="row">
                     <div class="col-12">
+                        @if (session('success'))
+                            <div class="alert alert-success">
+                                {{ session('success') }}
+                            </div>
+                        @endif
+                        @if (session('error'))
+                            <div class="alert alert-danger">
+                                {{ session('error') }}
+                            </div>
+                        @endif
                         <div class="bg-secondary rounded h-100 p-4">
-                            <h6 class="mb-4">Update User</h6>
-                            <form action="{{url("admin/user/update/".$user->id)}}" method="post">
+                            <h6 class="mb-4">Add New Product</h6>
+                            <form action="{{route("admin.gallery.store")}}" method="post">
                                 <div class="form-floating mb-3">
                                     @csrf
-                                    <input type="hidden" name="id" value="{{$user->id}}">
-                                    <input type="text" class="form-control" id="floatingInput" name="name" placeholder="Ahmed" value="{{$user->name}}">
+                                    <input type="text" class="form-control" id="floatingInput" name="name" placeholder="Tea">
                                     @error('name')
                                     <div class="alert alert-danger">{{ $message }}</div>
                                     @enderror
                                     <label for="floatingInput">Name</label>
                                 </div>
                                 <div class="form-floating mb-3">
-                                    <input type="email" class="form-control" id="floatingInput" name="email" placeholder="name@example.com" value="{{$user->email}}">
-                                    @error('email')
+                                    <!-- Description Textarea -->
+                                    <textarea class="form-control" placeholder="Product Description" id="floatingTextarea2" style="height: 100px" name="description"></textarea>
+                                    @error('description')
                                     <div class="alert alert-danger">{{ $message }}</div>
                                     @enderror
-                                    <label for="floatingInput">Email address</label>
+                                    <label for="floatingPassword">Description</label>
                                 </div>
                                 <div class="form-floating mb-3">
-                                    <input type="password" class="form-control" id="floatingPassword" name="password" placeholder="Password">
-                                    @error('password')
+                                    <input type="number" class="form-control" id="floatingInput" name="quantity" placeholder="200">
+                                    @error('quantity')
                                     <div class="alert alert-danger">{{ $message }}</div>
                                     @enderror
-                                    <label for="floatingPassword">Password</label>
+                                    <label for="floatingInput">Quantity</label>
                                 </div>
                                 <div class="form-floating mb-3">
-                                    <input type="number" class="form-control" id="floatingInput" name="phone" placeholder="01069683986" value="{{$user->phone}}">
-                                    @error('phone')
+                                    <input type="number" step="0.01" class="form-control" id="floatingPassword" name="price" placeholder="20.5">
+                                    @error('price')
                                     <div class="alert alert-danger">{{ $message }}</div>
                                     @enderror
-                                    <label for="floatingInput">Phone Number</label>
+                                    <label for="floatingPassword">Price</label>
+                                </div>
+                                <div class="form-floating mb-3">
+                                    <input type="number" step="0.01" class="form-control" id="floatingPassword" name="cost" placeholder="20.5">
+                                    @error('cost')
+                                    <div class="alert alert-danger">{{ $message }}</div>
+                                    @enderror
+                                    <label for="floatingPassword">Cost</label>
                                 </div>
 
+                                <!-- Status Button -->
                                 <div class="form-floating mb-3">
-                                    <select class="form-select" id="floatingSelect" aria-label="Role" name="role">
-                                        @if ($user->role == 'admin')
-                                        <option value="admin" selected>Admin</option>
-                                        <option value="user">User</option>
-
-                                        @else
-                                        <option value="user" selected>User</option>
-                                        <option value="admin">Admin</option>
-
-                                        @endif
+                                    <select class="form-select" id="floatingSelect" aria-label="Status" name="status">
+                                        <option value="1">Active</option>
+                                        <option value="0">Inactive</option>
                                     </select>
-                                    @error('role')
+                                    @error('status')
                                     <div class="alert alert-danger">{{ $message }}</div>
                                     @enderror
-                                    <label for="floatingSelect">Role</label>
+                                    <label for="floatingInput">Status</label>
                                 </div>
                                 @if (session('status'))
                                 <div class="alert alert-success">
@@ -88,7 +99,7 @@
                                 </div>
                                 @endif
 
-                                <button class="btn btn-primary" type="submit">Update</button>
+                                <button class="btn btn-primary" type="submit">Add</button>
                             </form>
 
                         </div>

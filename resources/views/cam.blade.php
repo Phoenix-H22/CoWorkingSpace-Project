@@ -2,12 +2,20 @@
 <head>
     <title>Html-Qrcode Demo</title>
     <meta name="csrf-token" content="{{ csrf_token() }}">
-<body>
-    <div id="qr-reader" style="width:500px"></div>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="{{asset("dashboard/assets/css/bootstrap.min.css")}}" rel="stylesheet">
+</head>
+<body style="background-color: beige !important;">
+        <div class="container">
+      <br>
+        <div id="qr-reader"></div>
+
     <div id="qr-reader-results"></div>
-</body>
-<script src="https://unpkg.com/html5-qrcode" type="text/javascript"></script>
-<script src="https://code.jquery.com/jquery-3.6.3.min.js" integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU=" crossorigin="anonymous"></script>
+        </div>
+
+
+    <script src="https://code.jquery.com/jquery-3.6.3.min.js" integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU=" crossorigin="anonymous"></script>
+    <script src="{{asset("assets/js/htmlQrCode.min.js")}}" type="text/javascript"></script>
 <script>
     function docReady(fn) {
         // see if DOM is already available
@@ -15,6 +23,11 @@
             || document.readyState === "interactive") {
             // call on next available tick
             setTimeout(fn, 1);
+
+            $(document).ready(function(){
+                $('.html5-qrcode-element').addClass('btn');
+            $('.html5-qrcode-element').addClass('btn-primary');
+            });
         } else {
             document.addEventListener("DOMContentLoaded", fn);
         }
@@ -26,8 +39,8 @@
         function onScanSuccess(decodedText, decodedResult) {
         //    on successfull scan
            $.ajax({
-                url: 'http://192.168.1.110/CoWorkingSpace-Project/public/qr',
-                method: 'GET',
+                url: 'https://192.168.1.101/CoWorkingSpace-Project/public/qr',
+                method: 'POST',
                 headers: {
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content'),
                 },
@@ -35,16 +48,14 @@
                 'card_id': decodedText
                 },
                 success: function (data) {
-                  alert(data);
-
+                    // alert response code that returned from server
+                    // alert(data);
+                    $("#qr-reader-results").append(data);
                 },
                 error: function (data) {
                     // alert response code that returned from server
-
                     // alert(errorMessage);
                     $("#qr-reader-results").append("Error: " + data);
-
-
                 }
             });
         }
@@ -54,5 +65,6 @@
         html5QrcodeScanner.render(onScanSuccess);
     });
 </script>
-</head>
+
+</body>
 </html>

@@ -24,9 +24,7 @@
 
 
             <div class="container">
-                <div class="row">
-                    <div class="col-12">
-                        @if (session('success'))
+                @if (session('success'))
                             <div class="alert alert-success">
                                 {{ session('success') }}
                             </div>
@@ -36,6 +34,9 @@
                                 {{ session('error') }}
                             </div>
                         @endif
+                <div class="row">
+                    <div class="col-12">
+
                         <div class="bg-secondary rounded h-100 p-4">
                             <div class="row mb-2">
                                <div class="col-6">

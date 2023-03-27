@@ -24,59 +24,56 @@
 
 
             <div class="container">
+                @if (session('success'))
+                            <div class="alert alert-success">
+                                {{ session('success') }}
+                            </div>
+                        @endif
+                        @if (session('error'))
+                            <div class="alert alert-danger">
+                                {{ session('error') }}
+                            </div>
+                        @endif
                 <div class="row">
                     <div class="col-12">
+
                         <div class="bg-secondary rounded h-100 p-4">
-                            <h6 class="mb-4">Update User</h6>
-                            <form action="{{url("admin/user/update/".$user->id)}}" method="post">
+                            <h6 class="mb-4">Update Settings</h6>
+                            <form action="{{route('admin.settings.store')}}" method="post">
                                 <div class="form-floating mb-3">
                                     @csrf
-                                    <input type="hidden" name="id" value="{{$user->id}}">
-                                    <input type="text" class="form-control" id="floatingInput" name="name" placeholder="Ahmed" value="{{$user->name}}">
-                                    @error('name')
+                                    <input type="text" class="form-control" id="floatingInput" value="{{$settings->shared_area_price_per_hour}}" name="shared_area_price_per_hour" placeholder="Shared Area Price">
+                                    @error('sharedAreaPrice')
                                     <div class="alert alert-danger">{{ $message }}</div>
                                     @enderror
-                                    <label for="floatingInput">Name</label>
+                                    <label for="floatingInput">Shared Area Price Per Hour</label>
                                 </div>
                                 <div class="form-floating mb-3">
-                                    <input type="email" class="form-control" id="floatingInput" name="email" placeholder="name@example.com" value="{{$user->email}}">
-                                    @error('email')
-                                    <div class="alert alert-danger">{{ $message }}</div>
-                                    @enderror
-                                    <label for="floatingInput">Email address</label>
-                                </div>
-                                <div class="form-floating mb-3">
-                                    <input type="password" class="form-control" id="floatingPassword" name="password" placeholder="Password">
-                                    @error('password')
-                                    <div class="alert alert-danger">{{ $message }}</div>
-                                    @enderror
-                                    <label for="floatingPassword">Password</label>
-                                </div>
-                                <div class="form-floating mb-3">
-                                    <input type="number" class="form-control" id="floatingInput" name="phone" placeholder="01069683986" value="{{$user->phone}}">
-                                    @error('phone')
-                                    <div class="alert alert-danger">{{ $message }}</div>
-                                    @enderror
-                                    <label for="floatingInput">Phone Number</label>
-                                </div>
 
+                                    <input type="text" class="form-control" id="floatingInput" value="{{$settings->small_room_price_per_hour}}" name="small_room_price_per_hour" placeholder="Small Room Price Per Hour">
+                                    @error('small_room_price_per_hour')
+                                    <div class="alert alert-danger">{{ $message }}</div>
+                                    @enderror
+                                    <label for="floatingPassword">Small Room Price Per Hour</label>
+                                </div>
                                 <div class="form-floating mb-3">
-                                    <select class="form-select" id="floatingSelect" aria-label="Role" name="role">
-                                        @if ($user->role == 'admin')
-                                        <option value="admin" selected>Admin</option>
-                                        <option value="user">User</option>
-
-                                        @else
-                                        <option value="user" selected>User</option>
-                                        <option value="admin">Admin</option>
-
-                                        @endif
+                                    <input type="text" class="form-control" id="floatingInput" value="{{$settings->big_room_price_per_hour}}" name="big_room_price_per_hour" placeholder="Big Room Price Per Hour">
+                                    @error('small_room_price_per_hour')
+                                    <div class="alert alert-danger">{{ $message }}</div>
+                                    @enderror
+                                    <label for="floatingPassword">Big Room Price Per Hour</label>
+                                </div>
+                                <!-- Status Button -->
+                                <!-- <div class="form-floating mb-3">
+                                    <select class="form-select" id="floatingSelect" aria-label="Status" name="status">
+                                        <option value="1" >Active</option>
+                                        <option value="0" >Inactive</option>
                                     </select>
-                                    @error('role')
+                                    @error('status')
                                     <div class="alert alert-danger">{{ $message }}</div>
                                     @enderror
-                                    <label for="floatingSelect">Role</label>
-                                </div>
+                                    <label for="floatingInput">Status</label>
+                                </div> -->
                                 @if (session('status'))
                                 <div class="alert alert-success">
                                     {{ session('status') }}

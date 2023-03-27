@@ -40,10 +40,10 @@
                         <div class="bg-secondary rounded h-100 p-4">
                             <div class="row mb-2">
                                <div class="col-6">
-                                <h6 class="ms-auto d-inline">Users Table</h6>
+                                <h6 class="ms-auto d-inline">Products Table</h6>
                                </div>
                             <div class="col-6 position-relative mb-2">
-                                <a href="{{route('admin.user.create')}}" class="btn btn-primary" style="position: absolute;right: 0;">Add User</a>
+                                <a href="{{route('admin.gallery.create')}}" class="btn btn-primary" style="position: absolute;right: 0;">Add Product</a>
                                 <br>
                             </div>
 
@@ -55,24 +55,28 @@
                                         <tr>
                                             <th scope="col">#</th>
                                             <th scope="col">Name</th>
-                                            <th scope="col">Email</th>
-                                            <th scope="col">Phone Number</th>
-                                            <th scope="col">Role</th>
-                                            <th scope="col">action</th>
+                                            <th scope="col">Quantity</th>
+                                            <th scope="col">Sold</th>
+                                            <th scope="col">Price</th>
+                                            <th scope="col">Cost</th>
+                                            <th scope="col">Status</th>
+                                            <th scope="col">Action</th>
 
                                         </tr>
                                     </thead>
                                     <tbody>
-                                       @foreach ($users as $user)
+                                       @foreach ($products as $product)
                                         <tr>
-                                            <th scope="row">{{$user->id}}</th>
-                                            <td>{{$user->name}}</td>
-                                            <td>{{$user->email}}</td>
-                                            <td>{{$user->phone}}</td>
-                                            <td>{{$user->role}}</td>
+                                            <th scope="row">{{$product->id}}</th>
+                                            <td>{{$product->name}}</td>
+                                            <td>{{$product->quantity}}</td>
+                                            <td>{{$product->sold}}</td>
+                                            <td>{{$product->price}}</td>
+                                            <td>{{$product->cost}}</td>
+                                            <td>{{$product->status}}</td>
                                             <td>
-                                                <a href="{{route('admin.user.edit',$user->id)}}" class="btn btn-primary">Edit</a>
-                                                <a href="{{route('admin.user.delete',$user->id)}}" class="btn btn-danger">Delete</a>
+                                                <a href="{{route('admin.gallery.edit',$product->id)}}" class="btn btn-primary">Edit</a>
+                                                <a href="{{route('admin.gallery.delete',$product->id)}}" class="btn btn-danger">Delete</a>
                                             </td>
                                         </tr>
                                         @endforeach
