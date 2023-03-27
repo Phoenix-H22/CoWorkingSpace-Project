@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use chillerlan\QRCode\QRCode;
 use Illuminate\Support\Facades\Http;
-use App\Http\Controllers\api\SessionsController;
+use App\Http\Controllers\api\sessionsController;
 class QrCodeController extends Controller
 {
     public function index(Request $request)
