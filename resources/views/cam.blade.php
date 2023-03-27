@@ -8,9 +8,9 @@
 <body style="background-color: beige !important;">
         <div class="container">
       <br>
-      @can ('admin')
+
       <div id="qr-reader"></div>
-        @endcan
+   
     <div id="qr-reader-results"></div>
         </div>
 
