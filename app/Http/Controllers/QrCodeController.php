@@ -11,8 +11,7 @@ class QrCodeController extends Controller
     public function index(Request $request)
     {
         // SessionsController::scan($request);
-        return response()->json(['data' => 'done'], 200);
-
+        return "hello";
     }
     public function cam(){
         return view('cam');
