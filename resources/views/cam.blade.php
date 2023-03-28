@@ -48,7 +48,8 @@
                 success: function (data) {
                     // alert response code that returned from server
                     // alert(data);
-                    $("#qr-reader-results").append(JSON.parse(data));
+                    var req = $.parseJSON(data)
+                    $("#qr-reader-results").append(req);
                 },
                 error: function (data) {
                     // alert response code that returned from server
