@@ -12,7 +12,7 @@ class QrCodeController extends Controller
     {
        $qr = SessionsController::scan($request);
     //    dd($qr);
-        return response()->json([$qr], 200);
+        return response()->json($qr, 200);
     }
     public function cam(){
         return view('cam');
