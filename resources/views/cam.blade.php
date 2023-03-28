@@ -42,19 +42,14 @@
            $.ajax({
                 url: 'https://pixelsspace.com/api/qr',
                 method: 'POST',
-                headers: {
-                    'Accept': 'application/json',
-                    'Accept-Language': 'application/json',
-                },
-                datatype: 'JSON',
                 data: {
                 'card_id': decodedText
                 },
                 success: function (data) {
                     // alert response code that returned from server
                     // alert(data);
-                    var req = $.parseJSON(data)
-                    $("#qr-reader-results").append(req);
+                    // var req = $.parseJSON(data)
+                    $("#qr-reader-results").append(data.message);
                 },
                 error: function (data) {
                     // alert response code that returned from server
