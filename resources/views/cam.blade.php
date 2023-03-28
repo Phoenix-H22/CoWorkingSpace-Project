@@ -46,6 +46,7 @@
                     'Accept': 'application/json',
                     'Accept-Language': 'application/json',
                 },
+                datatype: 'JSON',
                 data: {
                 'card_id': decodedText
                 },
