@@ -33,5 +33,5 @@ Route::middleware('auth:sanctum')->group(function () {
 
 
 });
-Route::post('qr', [QrCodeController::class, 'index']);
+Route::post('qr', [QrCodeController::class, 'index'])->name('qr');
 Route::get('/totalmoney', [SessionsController::class, 'totalMoney']);
