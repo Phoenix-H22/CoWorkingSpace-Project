@@ -43,8 +43,8 @@
                 url: 'https://pixelsspace.com/api/qr',
                 method: 'POST',
                 headers: {
-        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-    },
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    },
                 data: {
                 'card_id': decodedText
                 },
