@@ -10,7 +10,7 @@
       <br>
 
       <div id="qr-reader"></div>
-   
+
     <div id="qr-reader-results"></div>
         </div>
 
@@ -40,11 +40,8 @@
         function onScanSuccess(decodedText, decodedResult) {
         //    on successfull scan
            $.ajax({
-                url: 'https://pixelsspace.com/qr',
+                url: 'https://pixelsspace.com/api/qr',
                 method: 'POST',
-                headers: {
-                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content'),
-                },
                 data: {
                 'card_id': decodedText
                 },
@@ -59,6 +56,8 @@
                     $("#qr-reader-results").append("Error: " + data);
                 }
             });
+            // Stop scanning after first successful one
+            $('#html5-qrcode-button-camera-stop').click();
         }
 
         var html5QrcodeScanner = new Html5QrcodeScanner(
