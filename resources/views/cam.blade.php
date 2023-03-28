@@ -42,6 +42,10 @@
            $.ajax({
                 url: 'https://pixelsspace.com/api/qr',
                 method: 'POST',
+                headers: {
+                    'Accept': 'application/json',
+                    'Accept-Language': 'application/json',
+                },
                 data: {
                 'card_id': decodedText
                 },
