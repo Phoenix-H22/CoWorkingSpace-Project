@@ -92,5 +92,8 @@ Route::middleware(['auth'])->group(function () {
 
 
 Route::get('cam', [QrCodeController::class, 'cam']);
+Route::get('home', function(){
+    return view('home');
+});
 
 

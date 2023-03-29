@@ -4,14 +4,64 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="{{asset("dashboard/assets/css/bootstrap.min.css")}}" rel="stylesheet">
+    <link rel="stylesheet" href="{{asset("assets/fonts/icomoon/style.css")}}">
+    <link rel="stylesheet" href="{{asset("assets/css/bootstrap-select.min.css")}}">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="{{asset("assets/css/bootstrap.min.css")}}">
+    <!-- Style -->
+    <link rel="stylesheet" href="{{asset("assets/css/style.css")}}">
 </head>
 <body style="background-color: beige !important;">
         <div class="container">
       <br>
-
       <div id="qr-reader"></div>
+    <div id="qr-reader-results">
+    </div>
+    <br>
+    <br>
+    <form action="" method="post">
+        @csrf
+        <div class="form-group">
+            <label for="card_id">Session Code</label>
+            <input type="text" class="form-control" name="session_code" id="session_code" placeholder="Enter Session Code">
+        </div>
+        <div class="form-group">
+            <label for="card_id">Area Type</label>
+            <select class="selectpicker form-control" name="area_type">
+                <option value="1">Shared Area</option>
+                <option value="2">Big Room</option>
+                <option value="3">Small Rom</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="card_id">Gallery Products</label>
+            <select class="selectpicker form-control" name="gallery[]" multiple data-max-options="90">
+                <option value="AL">Alabama</option>
+                <option value="AK">Alaska</option>
+                <option value="AZ">Arizona</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="card_id">Kitchen Products</label>
+            <select class="selectpicker form-control" name="kitchen[]" multiple data-max-options="90">
+                <option value="AL">Alabama
 
-    <div id="qr-reader-results"></div>
+                </option>
+                <option value="AK">Alaska</option>
+                <option value="AZ">Arizona</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="card_id">Stationary Products</label>
+            <select class="selectpicker form-control" multiple name="stationary[]" data-max-options="90">
+                <option value="AL">Alabama</option>
+                <option value="AK">Alaska</option>
+                <option value="AZ">Arizona</option>
+            </select>
+        </div>
+
+        <button type="submit" class="btn btn-primary">CheckOut</button>
+    </form>
         </div>
 
 
@@ -39,27 +89,28 @@
         var lastResult, countResults = 0;
         function onScanSuccess(decodedText, decodedResult) {
         //    on successfull scan
-           $.ajax({
-                url: 'https://pixelsspace.com/api/qr',
-                method: 'POST',
-                headers: {
-                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                    },
-                data: {
-                'card_id': decodedText
-                },
-                success: function (data) {
-                    // alert response code that returned from server
-                    // alert(data);
-                    // var req = $.parseJSON(data)
-                    $("#qr-reader-results").append(data.message);
-                },
-                error: function (data) {
-                    // alert response code that returned from server
-                    // alert(errorMessage);
-                    $("#qr-reader-results").append("Error: " + data);
-                }
-            });
+        //    $.ajax({
+        //         url: 'https://pixelsspace.com/api/qr',
+        //         method: 'POST',
+        //         headers: {
+        //             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        //             },
+        //         data: {
+        //         'card_id': decodedText
+        //         },
+        //         success: function (data) {
+        //             // alert response code that returned from server
+        //             // alert(data);
+        //             // var req = $.parseJSON(data)
+        //             $("#qr-reader-results").append(data.message);
+        //         },
+        //         error: function (data) {
+        //             // alert response code that returned from server
+        //             // alert(errorMessage);
+        //             $("#qr-reader-results").append("Error: " + data);
+        //         }
+        //     });
+        $('#session_code').val(decodedText);
             // Stop scanning after first successful one
             $('#html5-qrcode-button-camera-stop').click();
         }
@@ -69,6 +120,10 @@
         html5QrcodeScanner.render(onScanSuccess);
     });
 </script>
+    <script src="{{asset("assets/js/popper.min.js")}}"></script>
+    <script src="{{asset("assets/js/bootstrap.min.js")}}"></script>
+    <script src="{{asset("assets/js/bootstrap-select.min.js")}}"></script>
+
 
 </body>
 </html>
