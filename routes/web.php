@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\GalleryController;
 use App\Http\Controllers\KitchenController;
 use App\Http\Controllers\SettingsController;
@@ -92,6 +93,8 @@ Route::middleware(['auth'])->group(function () {
 
 
 Route::get('cam', [QrCodeController::class, 'cam']);
+Route::post('checkout', [CheckoutController::class, 'store'])->name('checkout.store');
+
 Route::get('home', function(){
     return view('home');
 });

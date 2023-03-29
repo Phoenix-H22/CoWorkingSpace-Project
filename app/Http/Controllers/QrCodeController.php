@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\gallery;
+use App\Models\kitchen;
+use App\Models\stationary;
 use Illuminate\Http\Request;
 use chillerlan\QRCode\QRCode;
 use Illuminate\Support\Facades\Http;
@@ -15,7 +18,10 @@ class QrCodeController extends Controller
         return response()->json($qr->original, 200);
     }
     public function cam(){
-        return view('cam');
+        $gallery_products = gallery::get();
+        $kitchen_products = kitchen::get();
+        $stationary_products = stationary::get();
+        return view('cam', compact('gallery_products', 'kitchen_products', 'stationary_products'));
     }
 
 

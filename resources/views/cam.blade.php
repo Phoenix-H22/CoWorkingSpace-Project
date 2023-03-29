@@ -19,15 +19,15 @@
     </div>
     <br>
     <br>
-    <form action="" method="post">
+    <form action="{{route("checkout.store")}}" method="post">
         @csrf
         <div class="form-group">
             <label for="card_id">Session Code</label>
-            <input type="text" class="form-control" name="session_code" id="session_code" placeholder="Enter Session Code">
+            <input type="text" class="form-control" name="session_code" required value="" id="session_code" placeholder="Enter Session Code">
         </div>
         <div class="form-group">
             <label for="card_id">Area Type</label>
-            <select class="selectpicker form-control" name="area_type">
+            <select class="selectpicker form-control" required name="area_type">
                 <option value="1">Shared Area</option>
                 <option value="2">Big Room</option>
                 <option value="3">Small Rom</option>
@@ -36,27 +36,25 @@
         <div class="form-group">
             <label for="card_id">Gallery Products</label>
             <select class="selectpicker form-control" name="gallery[]" multiple data-max-options="90">
-                <option value="AL">Alabama</option>
-                <option value="AK">Alaska</option>
-                <option value="AZ">Arizona</option>
+                @foreach ($gallery_products as $product)
+                    <option value="{{$product->id}}">{{$product->name}}</option>
+                @endforeach
             </select>
         </div>
         <div class="form-group">
             <label for="card_id">Kitchen Products</label>
             <select class="selectpicker form-control" name="kitchen[]" multiple data-max-options="90">
-                <option value="AL">Alabama
-
-                </option>
-                <option value="AK">Alaska</option>
-                <option value="AZ">Arizona</option>
+                @foreach ($kitchen_products as $product)
+                    <option value="{{$product->id}}">{{$product->name}}</option>
+                @endforeach
             </select>
         </div>
         <div class="form-group">
             <label for="card_id">Stationary Products</label>
             <select class="selectpicker form-control" multiple name="stationary[]" data-max-options="90">
-                <option value="AL">Alabama</option>
-                <option value="AK">Alaska</option>
-                <option value="AZ">Arizona</option>
+                @foreach ($stationary_products as $product)
+                    <option value="{{$product->id}}">{{$product->name}}</option>
+                @endforeach
             </select>
         </div>
 
@@ -110,7 +108,7 @@
         //             $("#qr-reader-results").append("Error: " + data);
         //         }
         //     });
-        $('#session_code').val(decodedText);
+            $('#session_code').val(decodedText);
             // Stop scanning after first successful one
             $('#html5-qrcode-button-camera-stop').click();
         }
