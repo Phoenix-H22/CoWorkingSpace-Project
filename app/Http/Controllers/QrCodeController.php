@@ -17,11 +17,11 @@ class QrCodeController extends Controller
     //    dd($qr);
         return response()->json($qr->original, 200);
     }
-    public function cam(){
+    public function scan(){
         $gallery_products = gallery::get();
         $kitchen_products = kitchen::get();
         $stationary_products = stationary::get();
-        return view('cam', compact('gallery_products', 'kitchen_products', 'stationary_products'));
+        return view('dashboard.admin.checkout.scan', compact('gallery_products', 'kitchen_products', 'stationary_products'));
     }
 
 

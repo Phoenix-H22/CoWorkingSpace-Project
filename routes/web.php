@@ -92,7 +92,7 @@ Route::middleware(['auth'])->group(function () {
 // Route::get('/scan', [SessionsController::class, 'scan'])->name('admin.sessions.scan');
 
 
-Route::get('cam', [QrCodeController::class, 'cam']);
+Route::get('scan', [QrCodeController::class, 'scan']);
 Route::post('checkout', [CheckoutController::class, 'store'])->name('checkout.store');
 
 Route::get('home', function(){
