@@ -14,12 +14,15 @@
 <body style="background-color: beige !important;">
         <div class="container">
       <br>
-      <div id="qr-reader"></div>
+      <div class="row justify-center justify-content-center align-content-center align-items-center">
+        <div id="qr-reader" class="col-xl-4 col-l-4"></div>
+      </div>
     <div id="qr-reader-results">
     </div>
     <br>
     <br>
-    <form action="{{route("checkout.store")}}" method="post">
+   <div class="row justify-center justify-content-center align-content-center align-items-center">
+    <form action="{{route("checkout.store")}}" method="post" class="col-xl-6 col-l-6 col-sm-12 col-md-12">
         @csrf
         <div class="form-group">
             <label for="card_id">Session Code</label>
@@ -60,6 +63,7 @@
 
         <button type="submit" class="btn btn-primary">CheckOut</button>
     </form>
+   </div>
         </div>
 
 
