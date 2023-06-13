@@ -63,6 +63,8 @@
                         <div class="d-flex align-items-center justify-content-between mb-4">
                             <h6 class="mb-0">Recent Salse</h6>
                             <a href="{{url("qr")}}" class="btn btn-primary">Make QRs</a>
+                            <a href="{{url("scan")}}" class="btn btn-primary">Scan QR</a>
+
                             <a href="{{url("admin/sessions")}}">Show All</a>
                         </div>
                         <div class="table-responsive">

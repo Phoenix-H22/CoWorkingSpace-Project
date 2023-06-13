@@ -30,7 +30,7 @@
                 <div class="dropdown-menu bg-transparent border-0">
                     <a href="{{url("admin/sessions")}}" class="dropdown-item {{ Request::is('admin/sessions') ? 'active' : '' }}">All Sessions</a>
                     <a href="{{url("admin/sessions/create")}}" class="dropdown-item">Create Session</a>
-                    <a href="{{url("admin/sessions/scan")}}" class="dropdown-item">Scan Card</a>
+                    <a href="{{url("scan")}}" class="dropdown-item">Scan Card</a>
                 </div>
             </div>
             <div class="nav-item dropdown">
